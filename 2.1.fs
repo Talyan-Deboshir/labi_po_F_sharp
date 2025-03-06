@@ -1,4 +1,4 @@
-﻿open System
+open System
 
 
 let rims_to_des roman =
@@ -15,24 +15,28 @@ let rims_to_des roman =
     | _ -> None
 
 
-
-let rec read () =
-    printf "Введите римские цифры (I - IX) через пробел: "
-    let input = Console.ReadLine()
-
-    let rims_nums = input.Split([| ' ' |], StringSplitOptions.RemoveEmptyEntries) |> List.ofArray
+let rec string_list () =
+    printfn "Введите римские цифры (I - IX) через пробел: "
+    
+    let rec read acc =
+        let input = Console.ReadLine()
+        match input with
+        | null | "" -> List.rev acc
+        | _ -> read (input :: acc)
+    
+    let rims_nums = read []
     let des_from_rims = rims_nums |> List.map rims_to_des
 
-    
-    if List.exists Option.isNone des_from_rims then //проверка на корректность ввода
+    if List.exists Option.isNone des_from_rims then
         printfn "Введены некорректные римские цифры"
-        read () 
+        string_list () 
     else
-        des_from_rims |> List.choose id // преобразование option<int> в list<int>
+        des_from_rims |> List.choose id 
+
 
 
 [<EntryPoint>]
 let main argv =
-    let des_nums = read () 
+    let des_nums = string_list () 
     printfn "Десятичные цифры: %A" des_nums
     0
