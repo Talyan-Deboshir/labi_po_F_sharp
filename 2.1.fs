@@ -16,7 +16,7 @@ let rims_to_des roman =
 
 
 let rec string_list () =
-    printfn "Введите римские цифры (I - IX) через пробел: "
+    printfn "Введите римские цифры (I - IX) через Enter: "
     
     let rec read acc =
         let input = Console.ReadLine()
