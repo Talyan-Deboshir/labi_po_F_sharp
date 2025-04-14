@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Lab
 {
@@ -33,12 +33,15 @@ namespace Lab
         }
 
 
-        private int TotalMinutes => hours * 60 + minutes;
+        public int TotalMinutes()
+        {
+            return hours * 60 + minutes;
+        }
 
         public static Time operator -(Time time1, Time time2)
         {
-            int totalMinutes1 = time1.TotalMinutes;
-            int totalMinutes2 = time2.TotalMinutes;
+            int totalMinutes1 = time1.TotalMinutes();
+            int totalMinutes2 = time2.TotalMinutes();
             int diff = (totalMinutes1 - totalMinutes2 + 1440) % 1440;
             byte newHours = (byte)(diff / 60);
             byte newMinutes = (byte)(diff % 60);
@@ -47,8 +50,8 @@ namespace Lab
 
         public static Time operator +(Time time1, Time time2)
         {
-            int totalMinutes1 = time1.TotalMinutes;
-            int totalMinutes2 = time2.TotalMinutes;
+            int totalMinutes1 = time1.TotalMinutes();
+            int totalMinutes2 = time2.TotalMinutes();
             int sum = (totalMinutes1 + totalMinutes2) % 1440;
             byte newHours = (byte)(sum / 60);
             byte newMinutes = (byte)(sum % 60);
@@ -57,7 +60,7 @@ namespace Lab
 
         public static Time operator +(Time t, uint minutes)
         {
-            int totalMin = t.TotalMinutes + (int)minutes;
+            int totalMin = t.TotalMinutes() + (int)minutes;
             totalMin %= 1440;
             byte newHours = (byte)(totalMin / 60);
             byte newMinutes = (byte)(totalMin % 60);
