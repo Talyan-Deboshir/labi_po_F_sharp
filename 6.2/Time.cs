@@ -7,20 +7,46 @@ namespace Lab
         private byte hours;
         private byte minutes;
 
-        
+
         public byte Hours
         {
-            get { return hours; }
-            set { hours = value; }
+            get 
+            { 
+                return hours; 
+            }
+            set
+            {
+                if (value > 23)
+                {
+                    throw new ArgumentException($"Часы должны быть между 0 и 23.");
+                }
+                else
+                { 
+                    hours = value;
+                }
+            }
         }
 
         public byte Minutes
         {
-            get { return minutes; }
-            set { minutes = value; }
+            get 
+            { 
+                return minutes; 
+            }
+            set
+            {
+                if (value > 59)
+                {
+                    throw new ArgumentException($"Минуты должны быть между 0 и 59.");
+                }
+                else
+                {
+                    minutes = value;
+                }
+            }
         }
 
-        
+
         public Time() 
         {
             Hours = 0;
@@ -88,13 +114,13 @@ namespace Lab
             }
         }
 
-        //Явное приведение к byte
+        
         public static explicit operator byte(Time t)
         {
             return t.hours;
         }
 
-        //Неявное приведение к bool
+        
         public static implicit operator bool(Time t)
         {
             return t.hours != 0 || t.minutes != 0;
