@@ -1,4 +1,4 @@
-﻿namespace Lab
+namespace Lab
 {
     public class Logic
     {
@@ -7,14 +7,26 @@
 
         public bool HaveJob
         {
-            get { return haveJob; }
-            set { haveJob = value; }
+            get 
+            { 
+                return haveJob;
+            }
+            set 
+            { 
+                haveJob = value; 
+            }
         }
 
-        public bool HaveRussianCitizenship
+        public bool HaveRussianCitizenship 
         {
-            get { return haveRussianCitizenship; }
-            set { haveRussianCitizenship = value; }
+            get 
+            { 
+                return haveRussianCitizenship; 
+            }
+            set 
+            { 
+                haveRussianCitizenship = value; 
+            }
         }
 
         public Logic()
