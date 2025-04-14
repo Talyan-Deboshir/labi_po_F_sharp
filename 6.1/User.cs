@@ -1,4 +1,6 @@
-﻿namespace Lab
+using System;
+
+namespace Lab
 {
     public class User : Logic
     {
@@ -7,14 +9,34 @@
 
         public int Age
         {
-            get { return age; }
-            set { age = value; }
+            get 
+            { 
+                return age; 
+            }
+            set
+            {
+                if (value < 0 || value > 100)
+                {
+                    throw new ArgumentException($"Введите возраст от 0 до 100.");
+                }
+                age = value;
+            }
         }
 
         public char Gender
         {
-            get { return gender; }
-            set { gender = value; }
+            get 
+            { 
+                return gender; 
+            }
+            set
+            {
+                if (value != 'M' && value != 'F')
+                {
+                    throw new ArgumentException($"Введите 'M' или 'F'.");
+                }
+                gender = value;
+            }
         }
 
         public User() : base()
